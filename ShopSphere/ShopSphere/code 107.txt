@@ -1,0 +1,13 @@
+import scapy.all as scapy
+
+def packet_sniffer():
+    scapy.sniff(prn=process_packet, store=False)
+
+def process_packet(packet):
+    if packet.haslayer(scapy.IP):
+        ip_src = packet[scapy.IP].src
+        ip_dst = packet[scapy.IP].dst
+        print(f"Packet: {ip_src} -> {ip_dst}")
+
+if _name_ == "_main_":
+    packet_sniffer()
